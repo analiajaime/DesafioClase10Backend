@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { productManager } from '../controllers/productManager.js';
+import { ProductManager } from '../controllers/productManager.js';
 
-const router = Router();
-const productManager = new ProductManager('./src/models/products.json');
+const productManager = new ProductManager("./src/models/products.json");
+
 
 const productsRouter = Router();
 
@@ -95,3 +95,4 @@ productsRouter.get('/price/:price', async (req, res) => {
 });
 
 export { productsRouter };
+
