@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-import { productManager } from "../controllers/productManager.js";
+const ProductManager = require("../controllers/productManager.js");
 
-const viewsRouter = Router();
-const productManager = new ProductManager("./src/models/products.json");
+const viewsRouter = router;
+const productManager = new ProductManager();
 
-router.get("/", async (req, res) => {
+viewsRouter.get("/", async (req, res) => {
     try {
         const productos = await productManager.getProducts();
         res.render("index", {
@@ -17,8 +17,9 @@ router.get("/", async (req, res) => {
             error: "Error interno del servidor"
         });
     }
-})
+});
 
+module.exports = viewsRouter;
 
 
 router.get("/realtimeproducts", async (req, res) => {
